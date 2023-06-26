@@ -2,7 +2,7 @@
 > Designed for Visual Studio Standard C++ 20 ISO
 
 ## Introduction
-Emulator for the interpreted programming language CHIP8, developed using C++ and *CLove* [https://github.com/fdefelici/vs-clove-unit/tree/master] header for testing.
+Emulator for the interpreted programming language CHIP8, developed using C++ and [*CLove*](https://github.com/fdefelici/vs-clove-unit/tree/master) header for testing.
 The application allow to emulate various Games (written in CHIP8) like TICTAC.
 
 ## SetUp
