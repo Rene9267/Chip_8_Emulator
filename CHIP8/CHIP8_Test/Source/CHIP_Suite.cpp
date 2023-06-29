@@ -25,7 +25,7 @@ CLOVE_TEST(INIT_Test)
 
 #pragma region OPCode 0
 
-CLOVE_TEST(CLS_Test)
+CLOVE_TEST(OPCode0_CLS_Test)
 {
 	chipotto::Emulator emulator_init;
 	uint8_t* pixels = nullptr;
@@ -42,14 +42,14 @@ CLOVE_TEST(CLS_Test)
 	free(returnal);
 }
 
-CLOVE_TEST(RET_STACKOVERFLOW_Test)
+CLOVE_TEST(OPCode0_RET_STACKOVERFLOW_Test)
 {
 	chipotto::Emulator emulator_init;
 
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::StackOverflow, (int)emulator_init.Opcode0(0x00EE));
 }
 
-CLOVE_TEST(RET_TEST)
+CLOVE_TEST(OPCode0_RET_TEST)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode1(0x1240);
@@ -62,7 +62,7 @@ CLOVE_TEST(RET_TEST)
 
 #pragma region OPCode 1
 
-CLOVE_TEST(JP_Test)
+CLOVE_TEST(OPCode1_JP_Test)
 {
 	chipotto::Emulator emulator_init;
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::NotIncrementPC, (int)emulator_init.Opcode1(0x1300));
@@ -73,7 +73,7 @@ CLOVE_TEST(JP_Test)
 
 #pragma region OPCode 2
 
-CLOVE_TEST(CALL_STACKOVERFLOW_Test)
+CLOVE_TEST(OPCode2_CALL_STACKOVERFLOW_Test)
 {
 	chipotto::Emulator emulator_init;
 	for (size_t i = 0; i < 16; i++)
@@ -83,7 +83,7 @@ CLOVE_TEST(CALL_STACKOVERFLOW_Test)
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::StackOverflow, (int)emulator_init.Opcode2(0x2000));
 }
 
-CLOVE_TEST(CALL_Test)
+CLOVE_TEST(OPCode2_CALL_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -96,7 +96,7 @@ CLOVE_TEST(CALL_Test)
 
 #pragma region OPCode 3
 
-CLOVE_TEST(SEVx_Test)
+CLOVE_TEST(OPCode3_SEVx_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -112,7 +112,7 @@ CLOVE_TEST(SEVx_Test)
 
 #pragma region OPCode 4
 
-CLOVE_TEST(SNEVx_Test)
+CLOVE_TEST(OPCode4_SNEVx_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -126,31 +126,9 @@ CLOVE_TEST(SNEVx_Test)
 }
 #pragma endregion
 
-#pragma region OPCode Not Implemented yet
-
-////OpCode 5
-CLOVE_TEST(SEVxVy_Test)
-{
-	CLOVE_FAIL();
-}
-
-//OpCode 9
-CLOVE_TEST(SNEVxVy_Test)
-{
-	CLOVE_FAIL();
-}
-
-//OpCode B
-CLOVE_TEST(JPV0_Test)
-{
-	CLOVE_FAIL();
-}
-
-#pragma endregion
-
 #pragma region OPCode 6
 
-CLOVE_TEST(LDVx_Test)
+CLOVE_TEST(OPCode6_LDVx_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -161,7 +139,7 @@ CLOVE_TEST(LDVx_Test)
 
 #pragma region OPCode 7
 
-CLOVE_TEST(ADDVx_Test)
+CLOVE_TEST(OPCode7_ADDVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::IncrementPC, (int)emulator_init.Opcode7(0x7013));
@@ -171,7 +149,7 @@ CLOVE_TEST(ADDVx_Test)
 
 #pragma region OPCode 8
 
-CLOVE_TEST(LDVxVy_Test)
+CLOVE_TEST(OPCode8_LDVxVy_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -180,12 +158,12 @@ CLOVE_TEST(LDVxVy_Test)
 	CLOVE_INT_EQ((int)emulator_init.GetFromRegister(0), (int)emulator_init.GetFromRegister(4));
 }
 
-CLOVE_TEST(ORVxVy_Test)
+CLOVE_TEST(OPCode8_ORVxVy_Test)
 {
 	CLOVE_FAIL();
 }
 
-CLOVE_TEST(ANDVxVy_Test)
+CLOVE_TEST(OPCode8_ANDVxVy_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -197,7 +175,7 @@ CLOVE_TEST(ANDVxVy_Test)
 	CLOVE_INT_EQ(0x24, (int)emulator_init.GetFromRegister(0));
 }
 
-CLOVE_TEST(XORVxVy_Test)
+CLOVE_TEST(OPCode8_XORVxVy_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -209,7 +187,7 @@ CLOVE_TEST(XORVxVy_Test)
 	CLOVE_INT_EQ(0x12, (int)emulator_init.GetFromRegister(0));
 }
 
-CLOVE_TEST(ADDVxVy_Test)
+CLOVE_TEST(OPCode8_ADDVxVy_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -226,22 +204,22 @@ CLOVE_TEST(ADDVxVy_Test)
 
 }
 
-CLOVE_TEST(SUBVxVy_Test)
+CLOVE_TEST(OPCode8_SUBVxVy_Test)
 {
 	CLOVE_FAIL();
 }
 
-CLOVE_TEST(SHRVxVy_Test)
+CLOVE_TEST(OPCode8_SHRVxVy_Test)
 {
 	CLOVE_FAIL();
 }
 
-CLOVE_TEST(SUBNVxVy_Test)
+CLOVE_TEST(OPCode8_SUBNVxVy_Test)
 {
 	CLOVE_FAIL();
 }
 
-CLOVE_TEST(SHLVxVy_Test)
+CLOVE_TEST(OPCode8_SHLVxVy_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -263,7 +241,7 @@ CLOVE_TEST(SHLVxVy_Test)
 
 #pragma region OPCode A
 
-CLOVE_TEST(LDI_Test)
+CLOVE_TEST(OPCodeA_LDI_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -273,7 +251,7 @@ CLOVE_TEST(LDI_Test)
 #pragma endregion
 
 #pragma region OPCode C
-CLOVE_TEST(RNDVx_Test)
+CLOVE_TEST(OPCodeC_RNDVx_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -286,7 +264,7 @@ CLOVE_TEST(RNDVx_Test)
 
 #pragma region OPCodeF
 
-CLOVE_TEST(LDVxDT_Test)
+CLOVE_TEST(OPCodeF_LDVxDT_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -294,7 +272,7 @@ CLOVE_TEST(LDVxDT_Test)
 	CLOVE_INT_EQ((int)emulator_init.GetFromRegister(0), (int)emulator_init.GetDelayTimer());
 }
 
-CLOVE_TEST(LDVxK_Test)
+CLOVE_TEST(OPCodeF_LDVxK_Test)
 {
 	chipotto::Emulator emulator_init;
 
@@ -302,7 +280,7 @@ CLOVE_TEST(LDVxK_Test)
 	CLOVE_INT_EQ((int)emulator_init.GetFromRegister(0), (int)emulator_init.GetDelayTimer());
 }
 
-CLOVE_TEST(LDDTVx_Test)
+CLOVE_TEST(OPCodeF_LDDTVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode6(0x6025);
@@ -312,14 +290,14 @@ CLOVE_TEST(LDDTVx_Test)
 	CLOVE_INT_EQ(17 + SDL_GetTicks64(), (int)emulator_init.GetDelaTimerTicks());
 }
 
-CLOVE_TEST(LDSTVx_Test)
+CLOVE_TEST(OPCodeF_LDSTVx_Test)
 {
 	chipotto::Emulator emulator_init;
 
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::IncrementPC, (int)emulator_init.OpcodeF(0xF018));
 }
 
-CLOVE_TEST(ADDIVx_Test)
+CLOVE_TEST(OPCodeF_ADDIVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode6(0x6025);
@@ -329,7 +307,7 @@ CLOVE_TEST(ADDIVx_Test)
 	CLOVE_INT_EQ(0x25E, (int)emulator_init.GetI());
 }
 
-CLOVE_TEST(LDFVx_Test)
+CLOVE_TEST(OPCodeF_LDFVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode6(0x6025);
@@ -338,7 +316,7 @@ CLOVE_TEST(LDFVx_Test)
 	CLOVE_INT_EQ(0xB9, (int)emulator_init.GetI());
 }
 
-CLOVE_TEST(LDBVx_Test)
+CLOVE_TEST(OPCodeF_LDBVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode6(0x60F5);
@@ -354,7 +332,7 @@ CLOVE_TEST(LDBVx_Test)
 	CLOVE_INT_EQ((int)(0xF5 % 10), (int)emulator_init.GetFromMemoryMap(emulator_init.GetI() + 2));
 }
 
-CLOVE_TEST(LDIVx_Test)
+CLOVE_TEST(OPCodeF_LDIVx_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.Opcode6(0x60F5);
@@ -369,17 +347,19 @@ CLOVE_TEST(LDIVx_Test)
 	CLOVE_INT_EQ(0x63, emulator_init.GetFromMemoryMap(temp_i + 2));
 }
 
-CLOVE_TEST(LDVxI_Test)
+CLOVE_TEST(OPCodeF_LDVxI_Test)
 {
 	chipotto::Emulator emulator_init;
 	emulator_init.OpcodeA(0xA239);
 	emulator_init.Opcode6(0x60F5);
 	emulator_init.Opcode6(0x61BA);
 	emulator_init.Opcode6(0x6263);
-	uint16_t temp_i = emulator_init.GetI();
 	emulator_init.OpcodeF(0xF255);
 
 	emulator_init.CleanRegisters();
+	CLOVE_INT_EQ(0, (int)emulator_init.GetFromRegister(0));
+	CLOVE_INT_EQ(0, (int)emulator_init.GetFromRegister(1));
+	CLOVE_INT_EQ(0, (int)emulator_init.GetFromRegister(2));
 
 	CLOVE_INT_EQ((int)chipotto::OpcodeStatus::IncrementPC, (int)emulator_init.OpcodeF(0xF265));
 
@@ -387,6 +367,28 @@ CLOVE_TEST(LDVxI_Test)
 	CLOVE_INT_EQ(0xBA, (int)emulator_init.GetFromRegister(1));
 	CLOVE_INT_EQ(0x63, (int)emulator_init.GetFromRegister(2));
 }
+#pragma endregion
+
+#pragma region OPCode Not Implemented yet
+
+////OpCode 5
+CLOVE_TEST(OPCode5_SEVxVy_Test)
+{
+	CLOVE_FAIL();
+}
+
+//OpCode 9
+CLOVE_TEST(OPCode9_SNEVxVy_Test)
+{
+	CLOVE_FAIL();
+}
+
+//OpCode B
+CLOVE_TEST(OPCodeB_JPV0_Test)
+{
+	CLOVE_FAIL();
+}
+
 #pragma endregion
 
 CLOVE_SUITE_TEARDOWN_ONCE()

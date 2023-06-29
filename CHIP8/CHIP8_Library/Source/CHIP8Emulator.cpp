@@ -293,6 +293,11 @@ namespace chipotto {
 		}
 	}
 
+	SDL_Scancode Emulator::GetFromKeyboardValuesMap(const int index) const
+	{
+		return KeyboardValuesMap[index];
+	}
+
 	OpcodeStatus Emulator::Opcode0(const uint16_t opcode)
 	{
 		if ((opcode & 0xFF) == 0xE0)
@@ -517,23 +522,23 @@ namespace chipotto {
 	}
 	OpcodeStatus Emulator::OpcodeE(const uint16_t opcode)
 	{
-		if ((opcode & 0xFF) == 0xA1)
-		{
-			uint8_t register_index = (opcode >> 8) & 0xF;
-			std::cout << "SKNP V" << (int)register_index;
-			const uint8_t* keys_state = SDL_GetKeyboardState(nullptr);
-			if (keys_state[KeyboardValuesMap[Registers[register_index]]] == 0)
-			{
-				PC += 2;
-			}
-			return OpcodeStatus::IncrementPC;
-		}
-		else if ((opcode & 0xFF) == 0x9E)
+		if ((opcode & 0xFF) == 0x9E)
 		{
 			uint8_t register_index = (opcode >> 8) & 0xF;
 			std::cout << "SKP V" << (int)register_index;
 			const uint8_t* keys_state = SDL_GetKeyboardState(nullptr);
 			if (keys_state[KeyboardValuesMap[Registers[register_index]]] == 1)
+			{
+				PC += 2;
+			}
+			return OpcodeStatus::IncrementPC;
+		}
+		else if ((opcode & 0xFF) == 0xA1)
+		{
+			uint8_t register_index = (opcode >> 8) & 0xF;
+			std::cout << "SKNP V" << (int)register_index;
+			const uint8_t* keys_state = SDL_GetKeyboardState(nullptr);
+			if (keys_state[KeyboardValuesMap[Registers[register_index]]] == 0)
 			{
 				PC += 2;
 			}

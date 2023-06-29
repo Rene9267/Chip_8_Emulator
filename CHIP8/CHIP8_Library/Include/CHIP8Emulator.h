@@ -54,6 +54,8 @@ namespace chipotto
 
 		uint8_t GetFromMemoryMap(const uint16_t index) const;
 
+		SDL_Scancode GetFromKeyboardValuesMap(const int index) const;
+
 		void CleanRegisters();
 
 		OpcodeStatus Opcode0(const uint16_t opcode);
